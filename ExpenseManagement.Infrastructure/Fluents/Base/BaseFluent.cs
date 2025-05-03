@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ExpenseManagement.Base.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Transact.Base.Domain;
 
 namespace ExpenseManagement.Infrastructure.Fluents;
 

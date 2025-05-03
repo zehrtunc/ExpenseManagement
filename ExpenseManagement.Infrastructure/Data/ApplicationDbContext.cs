@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ExpenseManagement.Base.Entities;
+using ExpenseManagement.Infrastructure.Fluents;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
-namespace Transact.Api.Data;
+namespace ExpenseManagement.Infrastructure.Data;
 
 public class ApplicationDbContext : DbContext
 {
@@ -11,15 +14,17 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(Program).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserFluent).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<Domain.Customer> Customers { get; set; }
-    public DbSet<Domain.Account> Accounts { get; set; }
-    public DbSet<Domain.AccountTransaction> AccountTransactions { get; set; }
-    public DbSet<Domain.CustomerAddress> CustomerAddresses { get; set; }
-    public DbSet<Domain.CustomerPhone> CustomerPhones { get; set; }
-    public DbSet<Domain.EftTransaction> EftTransactions { get; set; }
-    public DbSet<Domain.MoneyTransfer> MoneyTransfers { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
+    public DbSet<BankAccount> BankAccounts { get; set; }
+    public DbSet<Expense> Expenses { get; set; }
+    public DbSet<ExpenseCategory> ExpenseCategories { get; set; }
+    public DbSet<ExpenseDocument> ExpenseDocuments { get; set; }
+    public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
+
 }

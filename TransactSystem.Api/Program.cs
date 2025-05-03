@@ -2,10 +2,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Transact.Api.Data;
 using Transact.Api.Impl;
-using Transact.Api.Impl.Validator;
-using Transact.Api.Mapper;
 using Transact.Api.Middleware;
 
 
@@ -18,15 +15,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddValidatorsFromAssemblyContaining<CustomerValidator>();
+//builder.Services.AddValidatorsFromAssemblyContaining<CustomerValidator>();
 
-builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("TransactConnection")));
+builder.Services.RegisterInfrastructureServices(builder.Configuration);
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+//builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 
 var app = builder.Build();

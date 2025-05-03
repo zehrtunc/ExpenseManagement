@@ -1,4 +1,4 @@
-﻿namespace Transact.Base.Domain;
+﻿namespace ExpenseManagement.Base.Domain;
 
 public class BaseEntity
 {

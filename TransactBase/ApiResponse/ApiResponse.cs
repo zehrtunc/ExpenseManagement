@@ -1,7 +1,7 @@
 ﻿
 using System.Text.Json;
 
-namespace Transact.Base;
+namespace ExpenseManagement.Base;
 
 public class ApiResponse
 {
