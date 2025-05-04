@@ -11,17 +11,17 @@ public class ExpenseQueryHandler :
     IRequestHandler<GetExpenseByIdQuery, ApiResponse<ExpenseResponse>>
 {
     private readonly IMapper _mapper;
-    private readonly IExpenseRepository _ExpenseRepository;
+    private readonly IExpenseRepository _expenseRepository;
 
-    public ExpenseQueryHandler(IExpenseRepository ExpenseRepository, IMapper mapper)
+    public ExpenseQueryHandler(IExpenseRepository expenseRepository, IMapper mapper)
     {
         _mapper = mapper;
-        _ExpenseRepository = ExpenseRepository;
+        _expenseRepository = expenseRepository;
     }
 
     public async Task<ApiResponse<List<ExpenseResponse>>> Handle(GetAllExpensesQuery request, CancellationToken cancellationToken)
     {
-        List<Expense> Expenses = await _ExpenseRepository.WhereAsync(x => x.IsActive);
+        List<Expense> Expenses = await _expenseRepository.WhereAsync(x => x.IsActive);
 
         List<ExpenseResponse> ExpensesResponse = _mapper.Map<List<ExpenseResponse>>(Expenses);
 
@@ -30,7 +30,7 @@ public class ExpenseQueryHandler :
 
     public async Task<ApiResponse<ExpenseResponse>> Handle(GetExpenseByIdQuery request, CancellationToken cancellationToken)
     {
-        Expense Expense = await _ExpenseRepository.FirstOrDefaultAsync(x => x.Id == request.id && x.IsActive);
+        Expense Expense = await _expenseRepository.FirstOrDefaultAsync(x => x.Id == request.id && x.IsActive);
         if (Expense == null)
         {
             return new ApiResponse<ExpenseResponse>("Expense not found");

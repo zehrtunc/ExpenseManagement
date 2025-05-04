@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Transact.Schema\ExpenseManagement.Schema.csproj" />
-    <ProjectReference Include="..\TransactBase\ExpenseManagement.Base.csproj" />
+    <ProjectReference Include="..\ExpenseManagement.Base\ExpenseManagement.Base.csproj" />
+    <ProjectReference Include="..\ExpenseManagement.Schema\ExpenseManagement.Schema.csproj" />
   </ItemGroup>
 
 </Project>

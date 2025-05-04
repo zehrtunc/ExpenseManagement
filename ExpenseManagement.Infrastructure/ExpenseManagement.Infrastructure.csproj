@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExpenseManagement.Base\ExpenseManagement.Base.csproj" />
     <ProjectReference Include="..\ExpenseManagement.Services\ExpenseManagement.Services.csproj" />
-    <ProjectReference Include="..\TransactBase\ExpenseManagement.Base.csproj" />
   </ItemGroup>
 
 </Project>

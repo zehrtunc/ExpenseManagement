@@ -1,0 +1,66 @@
+﻿@model ExpenseManagement.UI.Models.ViewModels.AddExpenseViewModel
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Yeni Masraf Ekle</h4>
+            <div class="nk-block-des">
+                <p>Lütfen yeni bir masraf girişi yapınız.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <form action="/Expense/Add" method="post" enctype="multipart/form-data">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Tutar</label>
+                            <div class="form-control-wrap">
+                                <input asp-for="Amount" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Kategori</label>
+                            <div class="form-control-wrap ">
+                                <div class="form-control-select">
+                                    <select asp-for="CategoryId" class="form-control" id="default-06">
+                                        <option selected value="default_option">Seçiniz</option>
+                                        <option value="1">Ulaşım</option>
+                                        <option value="2">Gıda</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Konum</label>
+                            <div class="form-control-wrap">
+                                <input asp-for="Location" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Döküman Yükle</label>
+                            <div class="form-control-wrap">
+                                <div class="custom-file">
+                                    <input asp-for="Documents" type="file" multiple="" class="custom-file-input">
+                                    <label class="custom-file-label">Dosya Seç</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary">Bilgileri Kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

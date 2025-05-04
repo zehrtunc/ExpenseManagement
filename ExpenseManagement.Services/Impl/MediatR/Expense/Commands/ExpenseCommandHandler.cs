@@ -13,12 +13,12 @@ public class ExpenseCommandHandler :
      IRequestHandler<UpdateExpenseCommand, ApiResponse<ExpenseResponse>>,
      IRequestHandler<DeleteExpenseCommand, ApiResponse>
 {
-    private readonly IExpenseRepository _ExpenseRepository;
+    private readonly IExpenseRepository _expenseRepository;
     private readonly IMapper _mapper;
 
-    public ExpenseCommandHandler(IExpenseRepository ExpenseRepository, IMapper mapper)
+    public ExpenseCommandHandler(IExpenseRepository expenseRepository, IMapper mapper)
     {
-        _ExpenseRepository = ExpenseRepository;
+        _expenseRepository = expenseRepository;
         _mapper = mapper;
     }
 
@@ -27,7 +27,7 @@ public class ExpenseCommandHandler :
         ExpenseRequest ExpenseRequest = request.Expense;
         Expense Expense = _mapper.Map<Expense>(ExpenseRequest);
 
-        await _ExpenseRepository.AddAsync(Expense);
+        await _expenseRepository.AddAsync(Expense);
 
         ExpenseResponse ExpenseResponse = _mapper.Map<ExpenseResponse>(Expense);
 
@@ -36,7 +36,7 @@ public class ExpenseCommandHandler :
 
     public async Task<ApiResponse<ExpenseResponse>> Handle(UpdateExpenseCommand request, CancellationToken cancellationToken)
     {
-        Expense ExpenseEntity = await _ExpenseRepository.GetByIdAsync(request.id);
+        Expense ExpenseEntity = await _expenseRepository.GetByIdAsync(request.id);
 
         // Expense var mı? 
         if (ExpenseEntity == null)
@@ -51,12 +51,12 @@ public class ExpenseCommandHandler :
 
     public async Task<ApiResponse> Handle(DeleteExpenseCommand request, CancellationToken cancellationToken)
     {
-        Expense Expense = await _ExpenseRepository.GetByIdAsync(request.id);
+        Expense Expense = await _expenseRepository.GetByIdAsync(request.id);
 
         if (Expense == null) return new ApiResponse("Expense not found");
 
         Expense.IsActive = false;
-        await _ExpenseRepository.UpdateAsync(Expense);
+        await _expenseRepository.UpdateAsync(Expense);
 
         return new ApiResponse();
     }

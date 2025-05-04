@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Api", "TransactSystem.Api\ExpenseManagement.Api.csproj", "{F9744D57-5592-41DB-8411-0115E41EEEB5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Base", "TransactBase\ExpenseManagement.Base.csproj", "{D52F8BB0-B34B-4F2E-929B-3C1D13EEAEC5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Schema", "Transact.Schema\ExpenseManagement.Schema.csproj", "{E4C06B9D-5E52-43ED-A3C1-2C8937F41CCC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Infrastructure", "ExpenseManagement.Infrastructure\ExpenseManagement.Infrastructure.csproj", "{55AD124C-8D24-4E7A-980B-EF5E5D5D97FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Services", "ExpenseManagement.Services\ExpenseManagement.Services.csproj", "{882159A3-735A-4D1C-BF1A-7C3646B034D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.UI", "ExpenseManagement.UI\ExpenseManagement.UI.csproj", "{BB4F0693-542D-4FA4-B48F-F8135AEFFE52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Api", "ExpenseManagement.Api\ExpenseManagement.Api.csproj", "{23197B72-2A01-4805-92B4-F3C4FD7250FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Base", "ExpenseManagement.Base\ExpenseManagement.Base.csproj", "{6DF43F04-314C-45C4-9034-1C93F370ED3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagement.Schema", "ExpenseManagement.Schema\ExpenseManagement.Schema.csproj", "{E51C435F-2756-43F9-BAD6-617A403F7A21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F9744D57-5592-41DB-8411-0115E41EEEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9744D57-5592-41DB-8411-0115E41EEEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9744D57-5592-41DB-8411-0115E41EEEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9744D57-5592-41DB-8411-0115E41EEEB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D52F8BB0-B34B-4F2E-929B-3C1D13EEAEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D52F8BB0-B34B-4F2E-929B-3C1D13EEAEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D52F8BB0-B34B-4F2E-929B-3C1D13EEAEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D52F8BB0-B34B-4F2E-929B-3C1D13EEAEC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4C06B9D-5E52-43ED-A3C1-2C8937F41CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4C06B9D-5E52-43ED-A3C1-2C8937F41CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4C06B9D-5E52-43ED-A3C1-2C8937F41CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4C06B9D-5E52-43ED-A3C1-2C8937F41CCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55AD124C-8D24-4E7A-980B-EF5E5D5D97FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55AD124C-8D24-4E7A-980B-EF5E5D5D97FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55AD124C-8D24-4E7A-980B-EF5E5D5D97FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +33,18 @@ Global
 		{BB4F0693-542D-4FA4-B48F-F8135AEFFE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB4F0693-542D-4FA4-B48F-F8135AEFFE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB4F0693-542D-4FA4-B48F-F8135AEFFE52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23197B72-2A01-4805-92B4-F3C4FD7250FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23197B72-2A01-4805-92B4-F3C4FD7250FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23197B72-2A01-4805-92B4-F3C4FD7250FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23197B72-2A01-4805-92B4-F3C4FD7250FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF43F04-314C-45C4-9034-1C93F370ED3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF43F04-314C-45C4-9034-1C93F370ED3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF43F04-314C-45C4-9034-1C93F370ED3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF43F04-314C-45C4-9034-1C93F370ED3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E51C435F-2756-43F9-BAD6-617A403F7A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E51C435F-2756-43F9-BAD6-617A403F7A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E51C435F-2756-43F9-BAD6-617A403F7A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E51C435F-2756-43F9-BAD6-617A403F7A21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

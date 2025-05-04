@@ -1,7 +1,14 @@
+using ExpenseManagement.UI.Services.ExpenseManagement.UI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient<ApiRequestService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]!);
+});
 
 var app = builder.Build();
 
@@ -22,6 +29,8 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Expense}/{action=Manage}/{id?}");
+
+
 
 app.Run();
