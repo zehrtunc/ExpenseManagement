@@ -1,8 +1,4 @@
-using FluentValidation;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using Transact.Api.Impl;
+using ExpenseManagement.Services;
 using Transact.Api.Middleware;
 
 
@@ -17,14 +13,7 @@ builder.Services.AddSwaggerGen();
 
 //builder.Services.AddValidatorsFromAssemblyContaining<CustomerValidator>();
 
-builder.Services.RegisterInfrastructureServices(builder.Configuration);
-
-builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
-
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
-
+builder.Services.RegisterInfrastructureServices(builder.Configuration).RegisterApplicationServices();
 
 var app = builder.Build();
 

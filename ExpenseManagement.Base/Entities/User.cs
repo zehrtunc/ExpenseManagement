@@ -11,7 +11,7 @@ public class User : BaseEntity
     public string PasswordHash { get; set; }
 
     public virtual BankAccount BankAccount { get; set; }
-    public virtual ICollection<Role> Roles{ get; set; }
+    public virtual ICollection<Role> Roles { get; set; }
     public virtual ICollection<Expense> ExpenseRequests { get; set; }
     public virtual ICollection<Expense> ExpenseReviews { get; set; }
 }

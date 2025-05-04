@@ -10,7 +10,7 @@ public class PaymentTransactionFluent : BaseFluent<PaymentTransaction>
         base.Configure(builder);
 
         builder.Property(a => a.Amount).IsRequired().HasPrecision(18, 2);
-        builder.Property(a => a.ReferencaNumber).IsRequired().HasMaxLength(50);
+        builder.Property(a => a.ReferenceNumber).IsRequired().HasMaxLength(50);
 
         builder.HasOne(x => x.Expense)
             .WithOne(x => x.PaymentTransaction)

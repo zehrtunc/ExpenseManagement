@@ -26,6 +26,4 @@ public class Expense : BaseEntity
 
     public virtual PaymentTransaction? PaymentTransaction { get; set; }
     public virtual ICollection<ExpenseDocument> ExpenseDocuments { get; set; }
-
-
 }

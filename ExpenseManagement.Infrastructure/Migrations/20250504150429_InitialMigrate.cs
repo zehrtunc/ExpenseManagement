@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ExpenseManagement.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstInitialize : Migration
+    public partial class InitialMigrate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -37,8 +37,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -58,8 +58,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
                     Surname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -80,8 +80,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
                     IBAN = table.Column<string>(type: "nvarchar(26)", maxLength: 26, nullable: false),
                     BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CurrencyCode = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -112,8 +112,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
                     ReviewById = table.Column<long>(type: "bigint", nullable: true),
                     ReviewDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RejectionReason = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -173,8 +173,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
                     ExpenseId = table.Column<long>(type: "bigint", nullable: false),
                     FilePath = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     FileType = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -200,9 +200,9 @@ namespace ExpenseManagement.Infrastructure.Migrations
                     BankAccountId = table.Column<long>(type: "bigint", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ReferencaNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReferenceNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    InsertUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateUser = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -221,7 +221,7 @@ namespace ExpenseManagement.Infrastructure.Migrations
                         column: x => x.ExpenseId,
                         principalTable: "Expenses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

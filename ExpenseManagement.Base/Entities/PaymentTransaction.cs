@@ -1,5 +1,4 @@
 ﻿
-using System.Reflection.Metadata.Ecma335;
 using ExpenseManagement.Base.Domain;
 
 namespace ExpenseManagement.Base.Entities;
@@ -14,5 +13,5 @@ public class PaymentTransaction : BaseEntity
 
     public decimal Amount { get; set; }
     public DateTime? TransactionDate { get; set; }
-    public string ReferencaNumber { get; set; }
+    public string ReferenceNumber { get; set; }
 }

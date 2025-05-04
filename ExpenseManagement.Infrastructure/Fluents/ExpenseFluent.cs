@@ -31,7 +31,8 @@ public class ExpenseFluent : BaseFluent<Expense>
         builder.HasOne(x => x.PaymentTransaction)
             .WithOne(x => x.Expense)
             .HasForeignKey<PaymentTransaction>(x => x.ExpenseId)
-            .IsRequired(true);
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.ExpenseCategory)
             .WithMany(x => x.Expenses)

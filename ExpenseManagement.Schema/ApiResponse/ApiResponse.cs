@@ -1,7 +1,7 @@
 ﻿
 using System.Text.Json;
 
-namespace ExpenseManagement.Base;
+namespace ExpenseManagement.Schema;
 
 public class ApiResponse
 {
@@ -14,6 +14,8 @@ public class ApiResponse
     public DateTime ServerDate { get; set; } = DateTime.UtcNow; //response`n üretildiği zaman
     public bool Success { get; set; }
     public string Message { get; set; }
+
+    public ApiResponse() {}
 
     public ApiResponse(string message = null)
     {
@@ -33,7 +35,7 @@ public class ApiResponse<T>
     public bool Success { get; set; }
     public string Message { get; set; }
     public T Response { get; set; }
-
+    public ApiResponse() {}
     public ApiResponse(bool isSuccess)
     {
         Success = isSuccess;
@@ -52,4 +54,6 @@ public class ApiResponse<T>
         Response = default;
         Message = message;
     }
+
+
 }

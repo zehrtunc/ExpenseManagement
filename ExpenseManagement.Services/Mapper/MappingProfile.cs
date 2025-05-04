@@ -11,6 +11,8 @@ namespace ExpenseManagement.Services.Mapper
             CreateMap<BankAccountRequest, BankAccount>();
             CreateMap<BankAccount, BankAccountResponse>();
 
+            CreateMap<ExpenseRequest, Expense>();
+            CreateMap<Expense, ExpenseResponse>();
         }
     }
 }

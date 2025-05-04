@@ -37,7 +37,7 @@ namespace ExpenseManagement.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<ApiResponse<ExpenseResponse>> Post([FromBody] ExpenseRequest Expense)
         {
             var operation = new CreateExpenseCommand(Expense);

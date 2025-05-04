@@ -50,7 +50,7 @@ public class ExpenseController : Controller
             UserId = 0 // to do: user servisi yaz
         };
 
-        var result = await _api.PostAsync<ExpenseRequest, ApiResponse<ExpenseResponse>>("api/Expense", request);
+        var result = await _api.PostAsync<ExpenseRequest, ApiResponse<ExpenseResponse>>("Expense", request);
 
         if (!result.Success)
         {
