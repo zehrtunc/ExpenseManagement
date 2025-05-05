@@ -1,22 +1,23 @@
 ﻿using ExpenseManagement.Base;
 using ExpenseManagement.Schema;
+using ExpenseManagement.UI.Filters;
 using ExpenseManagement.UI.Models.ViewModels;
 using ExpenseManagement.UI.Services.ExpenseManagement.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ExpenseManagement.UI.Controllers;
 
-public class ExpenseController : Controller
+public class ExpenseController : BaseController
 {
-    private readonly ApiRequestService _api;
-
-    public ExpenseController(ApiRequestService api)
+    public ExpenseController(ApiRequestService api) : base(api)
     {
-        _api = api;
     }
 
+    [RoleAuthorize("admin")]
     public IActionResult Manage()
     {
+
         return View();
     }
 
@@ -26,9 +27,20 @@ public class ExpenseController : Controller
     }
 
     [HttpGet]
-    public IActionResult Add()
+    public async Task<IActionResult> Add()
     {
-        return View();
+        var model = new AddExpenseViewModel();
+        var result = await _api.GetAsync<ApiResponse<List<ExpenseCategoryResponse>>>("ExpenseCategory/GetAll");
+
+        if (result.Success)
+        {
+            foreach(ExpenseCategoryResponse category in result.Response)
+            {
+                model.ExpenseCategories.Add(new SelectListItem(category.Name, category.Id.ToString()));
+            }
+        }
+
+        return View(model);
     }
 
     [HttpPost]
@@ -47,7 +59,7 @@ public class ExpenseController : Controller
             CategoryId = model.CategoryId,
             Status = Schema.Enums.ExpenseStatus.Pending,
             RequestDate = DateTime.Now,
-            UserId = 0 // to do: user servisi yaz
+            UserId = 0, // to do: user servisi yaz,
         };
 
         var result = await _api.PostAsync<ExpenseRequest, ApiResponse<ExpenseResponse>>("Expense", request);

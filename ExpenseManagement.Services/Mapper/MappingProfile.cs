@@ -13,6 +13,21 @@ namespace ExpenseManagement.Services.Mapper
 
             CreateMap<ExpenseRequest, Expense>();
             CreateMap<Expense, ExpenseResponse>();
+
+            CreateMap<ExpenseCategoryRequest, ExpenseCategory>();
+            CreateMap<ExpenseCategory, ExpenseCategoryResponse>();
+
+            CreateMap<ExpenseDocumentRequest, ExpenseDocument>();
+            CreateMap<ExpenseDocument, ExpenseDocumentResponse>();
+
+            CreateMap<PaymentTransactionRequest, PaymentTransaction>();
+            CreateMap<PaymentTransaction, PaymentTransactionResponse>();
+
+            CreateMap<UserRequest, User>();
+            CreateMap<User, UserResponse>();
+
+            CreateMap<RoleRequest, Role>();
+            CreateMap<Role, RoleResponse>();
         }
     }
 }

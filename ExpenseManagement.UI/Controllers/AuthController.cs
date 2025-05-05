@@ -1,18 +1,18 @@
 ﻿using ExpenseManagement.Base;
 using ExpenseManagement.Schema;
 using ExpenseManagement.UI.Models.ViewModels.Auth;
+using ExpenseManagement.UI.Services;
 using ExpenseManagement.UI.Services.ExpenseManagement.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseManagement.UI.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
-        private readonly ApiRequestService _api;
-
-        public AuthController(ApiRequestService api)
+        private readonly AuthCookieService _authCookieService;
+        public AuthController(ApiRequestService api, AuthCookieService authCookieService) : base(api)
         {
-            _api = api;
+            _authCookieService = authCookieService;
         }
 
         [HttpGet]
@@ -76,7 +76,8 @@ namespace ExpenseManagement.UI.Controllers
 
             if (result.Success)
             {
-                RedirectToAction("MyExpenses", "Expense");
+                _authCookieService.SetToken(result.Response.Token, false);
+                return RedirectToAction("MyExpenses", "Expense");
             }
             else
             {

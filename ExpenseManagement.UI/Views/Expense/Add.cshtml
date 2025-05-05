@@ -26,10 +26,8 @@
                             <label class="form-label">Kategori</label>
                             <div class="form-control-wrap ">
                                 <div class="form-control-select">
-                                    <select asp-for="CategoryId" class="form-control" id="default-06">
-                                        <option selected value="default_option">Seçiniz</option>
-                                        <option value="1">Ulaşım</option>
-                                        <option value="2">Gıda</option>
+                                    <select asp-for="CategoryId" asp-items="Model.ExpenseCategories" class="form-control" id="default-06">
+                                        <option selected value="-1">Seçiniz</option>
                                     </select>
                                 </div>
                             </div>

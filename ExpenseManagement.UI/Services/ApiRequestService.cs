@@ -1,5 +1,6 @@
 ﻿namespace ExpenseManagement.UI.Services
 {
+    using System.Net.Http.Headers;
     using System.Text;
     using System.Text.Json;
 
@@ -18,13 +19,11 @@
 
             private void AddAuthorizationHeader()
             {
-                // jwt tokenini daha sonra ekleyecegiz
-
-                //var token = _httpContextAccessor.HttpContext?.Session.GetString("AccessToken");
-                //if (!string.IsNullOrEmpty(token))
-                //{
-                //    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                //}
+                var token = _httpContextAccessor.HttpContext?.Request.Cookies["AuthToken"];
+                if (!string.IsNullOrEmpty(token))
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                }
             }
 
             public async Task<T?> GetAsync<T>(string url)

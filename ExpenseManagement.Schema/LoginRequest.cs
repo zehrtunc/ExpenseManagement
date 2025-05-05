@@ -11,5 +11,6 @@ public class LoginRequest
 public class LoginResponse
 {
     public string Token { get; set; }
+    public string[] Roles { get; set; }
 }
 

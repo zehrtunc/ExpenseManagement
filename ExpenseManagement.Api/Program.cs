@@ -1,4 +1,6 @@
 using ExpenseManagement.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Transact.Api.Middleware;
 
 
@@ -11,9 +13,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddValidatorsFromAssemblyContaining<CustomerValidator>();
-
 builder.Services.RegisterInfrastructureServices(builder.Configuration).RegisterApplicationServices();
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
 var app = builder.Build();
 
@@ -27,6 +42,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

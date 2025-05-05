@@ -15,7 +15,9 @@ public static class ConfigureServices
     {
 
         services.AddDbContext<ApplicationDbContext>(options =>
-             options.UseSqlServer(configuration.GetConnectionString("ExpenseConnection"),
+             options
+             .UseLazyLoadingProxies()
+             .UseSqlServer(configuration.GetConnectionString("ExpenseConnection"),
                  builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
         services.RegisterRepositories();
