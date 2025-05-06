@@ -21,8 +21,8 @@ namespace ExpenseManagement.Infrastructure.Migrations
             ('Personel');
 
             INSERT INTO [Users](Name, [Surname], Email, PasswordHash) 
-            VALUES('Admin', 'Admin', 'admin@admin.com', 'Asd123.'), 
-            ('Test Name', 'Test Surname', 'test@test.com', 'Asd123.');
+            VALUES('Admin', 'Admin', 'admin@admin.com', 'QfUYL63w7SSWmWpN47ZU0A==.3W0Eph15DOKoibqoo7w+QcVexzQpDMdvfefMGtqcEbI='), 
+            ('Test Name', 'Test Surname', 'test@test.com', 'QfUYL63w7SSWmWpN47ZU0A==.3W0Eph15DOKoibqoo7w+QcVexzQpDMdvfefMGtqcEbI=');
 
             INSERT INTO [RoleUser]([UsersId], [RolesId]) 
             VALUES(1, 1), (2, 2);
