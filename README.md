@@ -6,3 +6,7 @@ Projenin backend'i, Authorization, Authentication, JWT Token, Password hashleme,
 
 Yeni işe girmem ve nişanlanmam sebebiyle oldukça yoğun bir dönemden geçiyorum, bu sebepten ötürü final projesine kısıtlı vakit ayırmak durumuda kaldım.
 Süreç boyunca emekleriniz ve katkılarınız için teşekkür ederim.
+
+
+Admin email : zehra@gmail.com
+Admin password : Asd123.
