@@ -12,7 +12,12 @@ namespace ExpenseManagement.Services.Mapper
             CreateMap<BankAccount, BankAccountResponse>();
 
             CreateMap<ExpenseRequest, Expense>();
-            CreateMap<Expense, ExpenseResponse>();
+            CreateMap<Expense, ExpenseResponse>()
+                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Name + " " + src.User.Surname))
+                 .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.User.Email))
+                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.ExpenseCategory.Name))
+                 .ForMember(dest => dest.ReviewByUserName, opt => opt.MapFrom(src => src.ReviewByUser.Name + " " + src.ReviewByUser.Surname))
+                 ;
 
             CreateMap<ExpenseCategoryRequest, ExpenseCategory>();
             CreateMap<ExpenseCategory, ExpenseCategoryResponse>();

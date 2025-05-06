@@ -38,7 +38,7 @@
 
             public async Task<TResponse?> PostAsync<TRequest, TResponse>(string url, TRequest data)
             {
-                AddAuthorizationHeader();
+                AddAuthorizationHeader();   
                 var json = JsonSerializer.Serialize(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 

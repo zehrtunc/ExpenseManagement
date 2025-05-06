@@ -1,4 +1,5 @@
-﻿using ExpenseManagement.Base;
+﻿using ExpenseManagement.Api.Extensions;
+using ExpenseManagement.Base;
 using ExpenseManagement.Schema;
 using ExpenseManagement.Services.Impl.MediatR;
 using MediatR;
@@ -26,6 +27,17 @@ namespace ExpenseManagement.Api.Controllers
             var result = await mediator.Send(operation);
             return result;
         }
+
+        [HttpGet("GetMyExpenses")]
+        [Authorize]
+        public async Task<ApiResponse<List<ExpenseResponse>>> GetMyExpenses()
+        {
+            var userId = User.GetUserId(); 
+            var operation = new GetExpensesByUserIdQuery(userId);
+            var result = await mediator.Send(operation);
+            return result;
+        }
+
 
         [HttpGet("GetById/{id}")]
         [Authorize]

@@ -5,6 +5,7 @@ using ExpenseManagement.UI.Models.ViewModels;
 using ExpenseManagement.UI.Services.ExpenseManagement.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection;
 
 namespace ExpenseManagement.UI.Controllers;
 
@@ -14,16 +15,31 @@ public class ExpenseController : BaseController
     {
     }
 
-    [RoleAuthorize("admin")]
-    public IActionResult Manage()
+    [RoleAuthorize("Admin")]
+    public async Task<IActionResult> Manage()
     {
 
-        return View();
+        var result = await _api.GetAsync<ApiResponse<List<ExpenseResponse>>>("Expense/GetAll");
+
+        if (result.Success)
+        {
+            return View(result.Response);
+
+        }
+        return View(new List<ExpenseResponse>());
     }
 
-    public IActionResult MyExpenses()
+    public async Task<IActionResult> MyExpenses()
     {
-        return View();
+        var result = await _api.GetAsync<ApiResponse<List<ExpenseResponse>>>("Expense/GetMyExpenses");
+
+        if (result.Success)
+        {
+            return View(result.Response);
+
+        }
+        return View(new List<ExpenseResponse>());
+
     }
 
     [HttpGet]
@@ -46,10 +62,11 @@ public class ExpenseController : BaseController
     [HttpPost]
     public async Task<IActionResult> Add(AddExpenseViewModel model)
     {
-        // islicez
-
         if (!ModelState.IsValid)
+        {
             return View(model);
+
+        }
 
 
         var request = new ExpenseRequest
@@ -59,7 +76,8 @@ public class ExpenseController : BaseController
             CategoryId = model.CategoryId,
             Status = Schema.Enums.ExpenseStatus.Pending,
             RequestDate = DateTime.Now,
-            UserId = 0, // to do: user servisi yaz,
+            UserId = (long)UserId,
+            
         };
 
         var result = await _api.PostAsync<ExpenseRequest, ApiResponse<ExpenseResponse>>("Expense", request);

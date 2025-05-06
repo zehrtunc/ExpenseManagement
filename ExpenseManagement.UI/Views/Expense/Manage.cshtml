@@ -1,4 +1,5 @@
-﻿
+﻿@model List<ExpenseManagement.Schema.ExpenseResponse>
+
 <div class="nk-block-head nk-block-head-sm">
     <div class="nk-block-between g-3">
         <div class="nk-block-head-content">
@@ -19,21 +20,6 @@
             <div class="card-inner position-relative">
                 <div class="card-title-group">
                     <div class="card-tools">
-                        @*<div class="form-inline flex-nowrap gx-3">
-                                <div class="form-wrap w-150px">
-                                    <select class="form-select form-select-sm" data-search="off" data-placeholder="Bulk Action">
-                                        <option value="">Bulk Action</option>
-                                        <option value="email">Send Email</option>
-                                        <option value="group">Change Group</option>
-                                        <option value="suspend">Suspend User</option>
-                                        <option value="delete">Delete User</option>
-                                    </select>
-                                </div>
-                                <div class="btn-wrap">
-                                    <span class="d-none d-md-block"><button class="btn btn-dim btn-outline-light disabled">Apply</button></span>
-                                    <span class="d-md-none"><button class="btn btn-dim btn-outline-light btn-icon disabled"><em class="icon ni ni-arrow-right"></em></button></span>
-                                </div>
-                            </div>*@
                     </div>
                     <div class="card-tools mr-n1">
                         <ul class="btn-toolbar gx-1">
@@ -127,814 +113,137 @@
                     <div class="nk-tb-item nk-tb-head">
                         <div class="nk-tb-col nk-tb-col-check">
                             @*<div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="uid">
-                                    <label class="custom-control-label" for="uid"></label>
-                                </div>*@
+                    <input type="checkbox" class="custom-control-input" id="uid">
+                    <label class="custom-control-label" for="uid"></label>
+                </div>*@
                         </div>
-                        <div class="nk-tb-col"><span>User</span></div>
-                        <div class="nk-tb-col tb-col-mb"><span>Doc Type</span></div>
-                        <div class="nk-tb-col tb-col-md"><span>Documents</span></div>
-                        <div class="nk-tb-col tb-col-lg"><span>Submitted</span></div>
-                        <div class="nk-tb-col tb-col-md"><span>Status</span></div>
-                        <div class="nk-tb-col tb-col-lg"><span>Checked By</span></div>
+                        <div class="nk-tb-col"><span>Kullanıcı</span></div>
+                        <div class="nk-tb-col tb-col-mb"><span>Döküman Tipi</span></div>
+                        <div class="nk-tb-col tb-col-md"><span>Dökümanlar</span></div>
+                        <div class="nk-tb-col tb-col-lg"><span>Talep Tarihi</span></div>
+                        <div class="nk-tb-col tb-col-md"><span>Durum</span></div>
+                        <div class="nk-tb-col tb-col-lg"><span>Değerlendiren</span></div>
                         <div class="nk-tb-col nk-tb-col-tools">&nbsp;</div>
                     </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            @*<div class="custom-control custom-control-sm custom-checkbox notext">
-                                    <input type="checkbox" class="custom-control-input" id="uid1">
-                                    <label class="custom-control-label" for="uid1"></label>
+
+
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        ExpenseManagement.Schema.ExpenseResponse viewModel = Model[i];
+                        string nameSurname = (viewModel.UserName.Split(" ")[0][0]).ToString().ToUpper() + viewModel.UserName.Split(" ")[1][0].ToString().ToUpper();
+                        string reviewNameSurname = "";
+                        if (viewModel.ReviewByUserName != null)
+                        {
+                            reviewNameSurname = (viewModel.ReviewByUserName.Split(" ")[0][0]).ToString().ToUpper() + viewModel.ReviewByUserName.Split(" ")[1][0].ToString().ToUpper();
+                        }
+                        
+
+                        <div class="nk-tb-item">
+                            <div class="nk-tb-col nk-tb-col-check">
+                                @*<div class="custom-control custom-control-sm custom-checkbox notext">
+                                    <input type="checkbox" class="custom-control-input" id="uid2">
+                                    <label class="custom-control-label" for="uid2"></label>
                                 </div>*@
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar bg-primary">
-                                    <span>AB</span>
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Abu Bin Ishtiyak <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01544</span>
+                            </div>
+                            <div class="nk-tb-col">
+                                <div class="user-card">
+                                    <div class="user-avatar bg-dim-primary d-none d-sm-flex">
+                                        <span>@nameSurname</span>
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="tb-lead">@viewModel.UserName<span class="dot dot-success d-md-none ml-1"></span></span>
+                                        <span>@viewModel.UserEmail</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">18 Dec, 2019 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Approved</span>
-                            <span data-toggle="tooltip" title="Approved at 18 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>JS</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Janet Snyder</span>
-                                </div>
+                            <div class="nk-tb-col tb-col-mb">
+                                <span class="tb-lead-sub">örnek döküman</span>
                             </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
+                            <div class="nk-tb-col tb-col-md">
+                                <ul class="list-inline list-download">
+                                    @*@if (viewModel.ExpenseDocuments != null)
+                                    {
+                                        foreach (var document in viewModel.ExpenseDocuments)
+                                        {
+                                            <li>@document.FileType <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
+                                        }
+                                    }*@
+
+                                </ul>
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                <span class="tb-date">@viewModel.RequestDate</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md">
+                                @if (viewModel.Status == ExpenseManagement.Schema.Enums.ExpenseStatus.Pending)
+                                {
+                                    <span class="tb-status text-warning">Beklemede</span>
+                                }
+                                else if (viewModel.Status == ExpenseManagement.Schema.Enums.ExpenseStatus.Rejected)
+                                {
+                                    <span class="tb-status text-alert">Reddedildi</span>
+                                    <span data-toggle="tooltip" title="@viewModel.ReviewDate" data-placement="top"><em class="icon ni ni-info"></em></span>
+                                }
+                                else if (viewModel.Status == ExpenseManagement.Schema.Enums.ExpenseStatus.Approved)
+                                {
+                                    <span class="tb-status text-success">Approved</span>
+                                    <span data-toggle="tooltip" title="@viewModel.ReviewDate" data-placement="top"><em class="icon ni ni-info"></em></span>
+                                }
+                                else if (viewModel.Status == ExpenseManagement.Schema.Enums.ExpenseStatus.Paid)
+                                {
+                                    <span class="tb-status text-success">Ödendi</span>
+                                }
+                            </div>
+                            <div class="nk-tb-col tb-col-lg">
+                                @if (!string.IsNullOrEmpty(viewModel.ReviewByUserName))
+                                {
+                                    <div class="user-card">
+                                        <div class="user-avatar user-avatar-xs bg-orange-dim">
+                                            <span>@reviewNameSurname</span>
+                                        </div>
+                                        <div class="user-name">
+                                            <span class="tb-lead">@viewModel.ReviewByUserName</span>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid2">
-                                <label class="custom-control-label" for="uid2"></label>
+                                }
+
                             </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar">
-                                    <img src="./images/avatar/a-sm.jpg" alt="">
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Amelia Grant <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01489</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">National ID</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">12 Jan, 2020 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Approved</span>
-                            <span data-toggle="tooltip" title="Approved at 18 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>EV</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Ernesto Vargas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
+                            <div class="nk-tb-col nk-tb-col-tools">
+                                <ul class="nk-tb-actions gx-1">
+                                    <li class="nk-tb-action-hidden">
+                                        <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
+                                            <em class="icon ni ni-eye-fill"></em>
+                                        </a>
+                                    </li>
+                                    <li class="nk-tb-action-hidden">
+                                        <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
+                                            <em class="icon ni ni-check-fill-c"></em>
+                                        </a>
+                                    </li>
+                                    <li class="nk-tb-action-hidden">
+                                        <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
+                                            <em class="icon ni ni-cross-fill-c"></em>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Hızlı Görünüm</span></a></li>
+                                                    <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>Detaylar</span></a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><em class="icon ni ni-check-round"></em><span>Onayla</span></a></li>
+                                                    <li><a href="#"><em class="icon ni ni-na"></em><span>Reddet</span></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid3">
-                                <label class="custom-control-label" for="uid3"></label>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar">
-                                    <img src="./images/avatar/b-sm.jpg" alt="">
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Kristen Hawkins <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01434</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">12 Jan, 2020 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Approved</span>
-                            <span data-toggle="tooltip" title="Approved at 18 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>EV</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Ernesto Vargas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid4">
-                                <label class="custom-control-label" for="uid4"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar bg-purple">
-                                    <span>TV</span>
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Tommy Vasquez <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01286</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Driving ID</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">12 Jan, 2020 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-info">Pending</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>EV</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Ernesto Vargas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid5">
-                                <label class="custom-control-label" for="uid5"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar bg-teal">
-                                    <span>AH</span>
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Alejandro Haynes <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01235</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">18 Dec, 2019 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Approved</span>
-                            <span data-toggle="tooltip" title="Approved at 18 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>JS</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Janet Snyder</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid11">
-                                <label class="custom-control-label" for="uid11"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar">
-                                    <img src="./images/avatar/d-sm.jpg" alt="">
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Brooke Harmon <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01223</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">18 Dec, 2019 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-danger">Rejected</span>
-                            <span data-toggle="tooltip" title="Rejected at 12 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>JS</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Janet Snyder</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid6">
-                                <label class="custom-control-label" for="uid6"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar bg-gray">
-                                    <span>TM</span>
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Trevor Miller <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01124</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">10 Jan, 2020 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Approved</span>
-                            <span data-toggle="tooltip" title="Approved at 18 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>EV</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Ernesto Vargas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid7">
-                                <label class="custom-control-label" for="uid7"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar">
-                                    <img src="./images/avatar/c-sm.jpg" alt="">
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Lonnie Ferguson <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD01120</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Driving ID</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">03 Jan, 2020 12:45 AM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-info">Pending</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>EV</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Ernesto Vargas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid8">
-                                <label class="custom-control-label" for="uid8"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar bg-teal">
-                                    <span>MK</span>
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Mack Kennedy <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD00954</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">18 Nov, 2019 01:02 PM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Approved</span>
-                            <span data-toggle="tooltip" title="Approved at 18 Dec, 2019 01:02 PM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>JS</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Janet Snyder</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
-                    <div class="nk-tb-item">
-                        <div class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid9">
-                                <label class="custom-control-label" for="uid9"></label>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-avatar bg-warning">
-                                    <span>IW</span>
-                                </div>
-                                <div class="user-info">
-                                    <span class="tb-lead">Inez Wilkerson <span class="dot dot-success d-md-none ml-1"></span></span>
-                                    <span>UD00472</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-lead-sub">Passport</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <ul class="list-inline list-download">
-                                <li>Front Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                                <li>Back Side <a href="#" class="popup"><em class="icon ni ni-download"></em></a></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <span class="tb-date">12 Nov, 2019 01:02 AM</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-danger">Rejected</span>
-                            <span data-toggle="tooltip" title="Rejected at 12 Dec, 2019 01:02 AM" data-placement="top"><em class="icon ni ni-info"></em></span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <div class="user-card">
-                                <div class="user-avatar user-avatar-xs bg-orange-dim">
-                                    <span>JS</span>
-                                </div>
-                                <div class="user-name">
-                                    <span class="tb-lead">Janet Snyder</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col nk-tb-col-tools">
-                            <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="html/kyc-details-regular.html" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Quick View">
-                                        <em class="icon ni ni-eye-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Approved">
-                                        <em class="icon ni ni-check-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Rejected">
-                                        <em class="icon ni ni-cross-fill-c"></em>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <li><a href="html/kyc-details-regular.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-user"></em><span>View Profile</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-check-round"></em><span>Approved</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Rejected</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .nk-tb-item -->
+                        </div><!-- .nk-tb-item -->
+                    }
+
                 </div>
             </div><!-- .card-inner -->
             <div class="card-inner">

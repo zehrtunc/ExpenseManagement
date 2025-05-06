@@ -8,6 +8,7 @@ namespace ExpenseManagement.Services.Impl.MediatR;
 
 public class ExpenseQueryHandler :
     IRequestHandler<GetAllExpensesQuery, ApiResponse<List<ExpenseResponse>>>,
+    IRequestHandler<GetExpensesByUserIdQuery, ApiResponse<List<ExpenseResponse>>>,
     IRequestHandler<GetExpenseByIdQuery, ApiResponse<ExpenseResponse>>
 {
     private readonly IMapper _mapper;
@@ -39,5 +40,14 @@ public class ExpenseQueryHandler :
         ExpenseResponse ExpenseResponse = _mapper.Map<ExpenseResponse>(Expense);
 
         return new ApiResponse<ExpenseResponse>(ExpenseResponse);
+    }
+
+    public async Task<ApiResponse<List<ExpenseResponse>>> Handle(GetExpensesByUserIdQuery request, CancellationToken cancellationToken)
+    {
+        List<Expense> Expenses = await _expenseRepository.WhereAsync(x => x.UserId == request.userId && x.IsActive);
+
+        List<ExpenseResponse> ExpensesResponse = _mapper.Map<List<ExpenseResponse>>(Expenses);
+
+        return new ApiResponse<List<ExpenseResponse>>(ExpensesResponse);
     }
 }
